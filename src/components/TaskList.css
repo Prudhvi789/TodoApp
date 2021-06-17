@@ -1,0 +1,24 @@
+.list{
+    display: inline-flex;
+    align-items: center;
+    width: 450px;
+    justify-content: space-between;
+}
+
+.icons{
+    background-color : #ffffff !important;
+}
+
+.editBox{
+    margin-right: 32px;
+    padding: 6px;
+    border: transparent;
+    border-bottom: 1px solid #797777;
+    font-size: inherit;
+}
+
+@media(max-width: 600px){
+    .list{
+        width : 85%
+    }
+}
