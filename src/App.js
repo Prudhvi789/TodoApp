@@ -29,9 +29,14 @@ function App() {
 }
 
 const LogOut = () => {
+  const handler = () =>{
+    sessionStorage.removeItem('user');
+    auth.signOut()
+  }
+
   return auth.currentUser && (
     <div>
-        <button className="logout" onClick={() => auth.signOut()}>Sign Out</button>
+        <button className="logout" onClick={handler}>Sign Out</button>
     </div>
     
   )

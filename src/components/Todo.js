@@ -5,6 +5,7 @@ import fire from '../fire';
 import AddTaskForm from './AddTaskForm';
 import Login from './Login';
 import TaskList from './TaskList';
+import '../App.css'
 
 const auth = fire.auth();
 
@@ -16,7 +17,7 @@ const Todo = () => {
             {
                 user ? 
                 <Container >
-                    <div>
+                    <div className="box">
                         <div>
                             <h2>Add Task</h2>
                             <AddTaskForm />

@@ -30,6 +30,7 @@ const Login = () => {
           // Signed in
           var user = userCredential.user;
           context.setUser(user);
+          sessionStorage.setItem("user", JSON.stringify(user));
         })
         .catch((error) => {
           var errorCode = error.code;
