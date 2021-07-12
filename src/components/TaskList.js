@@ -1,6 +1,5 @@
 import { Button, Checkbox } from '@material-ui/core';
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { GetData } from '../hooks/GetData';
+import React, { useContext, useRef, useState } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 import './TaskList.css';
 import fire from '../fire';
@@ -13,10 +12,9 @@ const TaskList = () => {
     const [ removed,setRemoved ] = useState(false);
     const [ edit, setEdit ] = useState({id : "" , name : "" , userId : "" });
     const editRef = useRef();
-    const [documents] = GetData();
     const db = fire.firestore();
 
-    //console.log(user)
+    //console.log(tasks)
 
     const handler = () => {
        const newTask = {
@@ -68,10 +66,6 @@ const TaskList = () => {
                 console.error("Error updating document: ", error);
             });
     }
-
-    useEffect(()=>{
-            context.setTask(documents)
-    },[documents])
 
     return (
         <div className="task-box">

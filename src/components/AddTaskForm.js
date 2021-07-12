@@ -7,22 +7,20 @@ import './AddTaskForm.css';
 
 const AddTaskForm = () => {
     const context = useContext(GlobalContext)
-    const user = JSON.parse(sessionStorage.getItem('user'));
     const [name,setName] = useState("");
     const task = {
         id : Math.random()* 1000000,
         name : name,
-        userId : user.uid,
+        userId : context.user.uid,
         checked : false 
     }
     const db = fire.firestore();
-    //console.log(context.user.uid);
 
     const handler = () => {
         context.addTask(task);
-        db.collection(`users/${''+user.uid}/tasks`).doc(''+task.id).set({
+        db.collection(`users/${''+context.user.uid}/tasks`).doc(''+task.id).set({
             name: name,
-            userId : user.uid,
+            userId : context.user.uid,
             checked : false
         })
         .then(() => {

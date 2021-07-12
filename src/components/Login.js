@@ -11,7 +11,8 @@ const Login = () => {
     const [ username, setUsername ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ up, setUp ] = useState(false);
-
+    const db = fire.firestore();
+    
     const userDetails = {
         username : username,
         password : password
@@ -24,6 +25,19 @@ const Login = () => {
         setPassword('');
     }
 
+    const setData = (user) => {
+        db.collection(`users/${user.uid}/tasks`)
+        .get()
+        .then((querySnapshot) => {
+            let arr = [];
+            querySnapshot.docs.map((doc) =>
+            arr.push({ id: doc.id, name: doc.data().name, userId: doc.data().userId })
+            );
+            context.setTask(arr);
+            sessionStorage.setItem("tasks", JSON.stringify(arr));
+        });
+    }
+
     const ifLogin = (userDetails) => {
         fire.auth().signInWithEmailAndPassword(userDetails.username, userDetails.password)
         .then((userCredential) => {
@@ -31,6 +45,7 @@ const Login = () => {
           var user = userCredential.user;
           context.setUser(user);
           sessionStorage.setItem("user", JSON.stringify(user));
+          setData(user);
         })
         .catch((error) => {
           var errorCode = error.code;

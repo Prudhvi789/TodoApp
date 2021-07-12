@@ -31,6 +31,7 @@ function App() {
 const LogOut = () => {
   const handler = () =>{
     sessionStorage.removeItem('user');
+    sessionStorage.removeItem('tasks');
     auth.signOut()
   }
 

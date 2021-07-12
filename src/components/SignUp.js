@@ -33,6 +33,7 @@ const SignUp = () => {
                 // Signed in 
                 var user = userCredential.user;
                 context.setUser(user);
+                sessionStorage.setItem("user", JSON.stringify(user));
             })
             .catch((error) => {
                 var errorMessage = error.message;

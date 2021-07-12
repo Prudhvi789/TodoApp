@@ -1,11 +1,13 @@
 import React, { createContext, useReducer } from 'react';
 import {AppReducer} from './AppReducer';
 //import { GetData } from './GetData';
-//import { useCollectionData } from 'react-firebase-hooks/firestore';
+
+const user = JSON.parse(sessionStorage.getItem('user'));
+const tasks = JSON.parse(sessionStorage.getItem('tasks'));
 
 const initialState={
-    user : {},
-    task : [{}]
+    user : user ? user : {},
+    task : tasks ? tasks : []
 }
 
 export const GlobalContext = createContext(initialState);
